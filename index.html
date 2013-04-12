@@ -7,16 +7,13 @@
   App = Ember.Application.create();
 
   App.Router.map(function() {
-    this.resource('index', { path: '/' }, function() {});
     this.resource('hi', { path: '/hi' }, function() {});
   });
 
 </script>
 
 <script type="text/x-handlebars" data-template-name='index'>
-  <p>index!</p>
-
-  <p>{{#linkTo hi}}hi{{/linkTo}}</p>
+  <p>{{#linkTo hi}}say hi{{/linkTo}}</p>
 </script>
 
 <script type="text/x-handlebars" data-template-name='hi'>
