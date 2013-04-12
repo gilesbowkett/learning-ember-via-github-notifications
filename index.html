@@ -1,3 +1,24 @@
+<style>
+
+  ul {
+    margin-left: 20px;
+  }
+
+  li {
+    vertical-align: top;
+    margin-top: 0px;
+  }
+
+  li.Issue {
+    list-style-image: url('./issue.png');
+  }
+
+  li.PullRequest {
+    list-style-image: url('./pull_request.png');
+  }
+
+</style>
+
 <script src="handlebars.js"></script>
 <script src="jquery-1.9.1.min.js"></script>
 <script src="ember-1.0.0-rc.2.js"></script>
@@ -20,10 +41,9 @@
 
   <h1>Notifications</h1>
 
-  <dl class="notifications">
+  <ul class="notifications">
   {{#each App.notificationsController}}
-    <dt class="type">{{subject.type}}</dt>
-    <dd class="title">{{subject.title}}</dd>
+    <li {{bindAttr class="subject.type"}}>{{subject.title}}</li>
   {{/each}}
   </ul>
 
