@@ -59,7 +59,9 @@
 
   <ul class="notifications">
   {{#each App.notificationsController}}
-    <li {{bindAttr class="subject.type"}}>{{subject.title}}</li>
+    <li {{bindAttr class="subject.type"}}>
+      <p>{{subject.title}}</p>
+    </li>
   {{/each}}
   </ul>
 
