@@ -2,21 +2,28 @@
 <script src="jquery-1.9.1.min.js"></script>
 <script src="ember-1.0.0-rc.2.js"></script>
 
+<script type="text/x-handlebars" data-template-name='index'>
+  <p>{{#linkTo hi}}say hi{{/linkTo}}</p>
+
+  <p>{{#linkTo notifications}}notifications{{/linkTo}}</p>
+</script>
+
+<script type="text/x-handlebars" data-template-name='hi'>
+  hello world!
+</script>
+
+<script type="text/x-handlebars" data-template-name='notifications'>
+  notifications go here
+</script>
+
 <script>
 
   App = Ember.Application.create();
 
   App.Router.map(function() {
-    this.resource('hi', { path: '/hi' }, function() {});
+    this.resource('hi', { path: '/hi' });
+    this.resource('notifications', { path: '/notifications' });
   });
 
-</script>
-
-<script type="text/x-handlebars" data-template-name='index'>
-  <p>{{#linkTo hi}}say hi{{/linkTo}}</p>
-</script>
-
-<script type="text/x-handlebars" data-template-name='hi'>
-  hello world!
 </script>
 
