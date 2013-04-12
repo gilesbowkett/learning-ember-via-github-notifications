@@ -1,20 +1,30 @@
 <style>
 
+  body {
+    font-family: 'Gill Sans';
+  }
+
   ul {
     margin-left: 20px;
   }
 
   li {
-    vertical-align: top;
-    margin-top: 0px;
+    border: 1px dashed #eee;
+    width: 500px;
+    margin-bottom: 20px;
+
+    background-repeat: no-repeat;
+    list-style-type: none;
+    min-height: 46px;
+    padding-left: 60px;
   }
 
   li.Issue {
-    list-style-image: url('./issue.png');
+    background-image: url('./issue.png');
   }
 
   li.PullRequest {
-    list-style-image: url('./pull_request.png');
+    background-image: url('./pull_request.png');
   }
 
 </style>
