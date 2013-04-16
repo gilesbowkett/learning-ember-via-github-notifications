@@ -56,9 +56,9 @@
   {{template 'octocat'}}
 
   <ul class="notifications">
-    {{#each controller}}
-      <li {{bindAttr class="subject.type"}}>
-        {{#linkTo 'notification' subject}}<p>{{subject.title}}</p>{{/linkTo}}
+    {{#each notification in controller}}
+      <li {{bindAttr class="notification.subject.type"}}>
+        {{#linkTo 'notification' notification}}<p>{{notification.subject.title}}</p>{{/linkTo}}
       </li>
     {{/each}}
   </ul>
