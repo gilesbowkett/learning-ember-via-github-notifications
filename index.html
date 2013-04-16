@@ -66,27 +66,20 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name='notification'>
-  argle bargle
+  <p>{{content.subject.title}}</p>
+  <p>{{content.subject.type}}</p>
+  <p>{{content.reason}}</p>
+  <p>{{content.updated_at}}</p>
+  <p>{{content.unread}}</p>
 </script>
 
 <script>
 
   App = Ember.Application.create();
 
-  App.Router.map(function() {
-    this.route('notification', { path: '/:notification_id' } );
-  });
-
-  App.IndexController = Ember.ArrayController.extend();
-
-  App.NotificationRoute = Ember.Route.extend({
-    setupController: function(controller, song) {
-      controller.set('model', App.Notification.find());
-    }
-  });
-
   App.Notification = Ember.Object.extend();
   App.Notification.reopenClass({
+
     find: function(id) {
       return this.findAll().find(function(notification, index, enumerable) {
         if (parseInt(notification.id, 10) == id) {
@@ -94,6 +87,7 @@
         }
       });
     },
+
     findAll: function() {
 
       var notifications = [];
@@ -1445,9 +1439,21 @@
     }
   });
 
+  App.Router.map(function() {
+    this.route('notification', { path: '/:notification_id' } );
+  });
+
+  App.IndexController = Ember.ArrayController.extend();
+
   App.IndexRoute = Ember.Route.extend({
     setupController: function(controller) {
       controller.set('content', App.Notification.findAll());
+    }
+  });
+
+  App.NotificationRoute = Ember.Route.extend({
+    setupController: function(controller, notification) {
+      controller.set('content', notification);
     }
   });
 
