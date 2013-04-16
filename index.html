@@ -58,7 +58,9 @@
   <ul class="notifications">
     {{#each notification in controller}}
       <li {{bindAttr class="notification.subject.type"}}>
-        {{#linkTo 'notification' notification}}<p>{{notification.subject.title}}</p>{{/linkTo}}
+        {{#linkTo 'notification' notification}}
+          <p>{{notification.subject.title}}</p>
+        {{/linkTo}}
       </li>
     {{/each}}
   </ul>
