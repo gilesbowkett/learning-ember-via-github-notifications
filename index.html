@@ -79,9 +79,21 @@
 
   App.IndexController = Ember.ArrayController.extend();
 
+  App.NotificationRoute = Ember.Route.extend({
+    setupController: function(controller, song) {
+      controller.set('model', App.Notification.find());
+    }
+  });
+
   App.Notification = Ember.Object.extend();
   App.Notification.reopenClass({
-    find: function() {},
+    find: function(id) {
+      return this.findAll().find(function(notification, index, enumerable) {
+        if (parseInt(notification.id, 10) == id) {
+          return notification;
+        }
+      });
+    },
     findAll: function() {
 
       var notifications = [];
