@@ -70,9 +70,11 @@
 <script type="text/x-handlebars" data-template-name='notification'>
   <p>{{content.subject.title}}</p>
   <p>{{content.subject.type}}</p>
+  <p>{{content.subject.url}}</p>
   <p>{{content.reason}}</p>
   <p>{{content.updated_at}}</p>
   <p>{{content.unread}}</p>
+  <p>data: {{content.data}}</p>
 </script>
 
 <script>
@@ -80,6 +82,18 @@
   App = Ember.Application.create();
 
   App.Notification = Ember.Object.extend();
+
+  App.Notification.reopen({
+    getExpandedDataFromGitHub: function() {
+      notification = this;
+      jQuery.get(notification.subject.url,
+                 function(data) {
+        notification.data = data;
+        console.log(data);
+      });
+    }
+  });
+
   App.Notification.reopenClass({
 
     find: function(id) {
@@ -1455,6 +1469,7 @@
 
   App.NotificationRoute = Ember.Route.extend({
     setupController: function(controller, notification) {
+      notification.getExpandedDataFromGitHub();
       controller.set('content', notification);
     }
   });
