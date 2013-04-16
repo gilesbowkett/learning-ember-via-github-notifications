@@ -33,6 +33,10 @@
     background-image: url('./pull_request.png');
   }
 
+  #right-side-view {
+    float: right;
+  }
+
 </style>
 
 <script src="handlebars.js"></script>
@@ -53,16 +57,24 @@
   <h1>hello world!</h1>
 </script>
 
+<script type="text/x-handlebars" data-template-name='_right-side'>
+  <div id="right-side-view">
+    <img src="octocat.png">
+  </div>
+</script>
+
 <script type="text/x-handlebars" data-template-name='notifications'>
 
   <h1>Notifications</h1>
 
+  {{partial 'right-side'}}
+
   <ul class="notifications">
-  {{#each App.notificationsController}}
-    <li {{bindAttr class="subject.type"}}>
-      <p>{{subject.title}}</p>
-    </li>
-  {{/each}}
+    {{#each App.notificationsController}}
+      <li {{bindAttr class="subject.type"}}>
+        <p>{{subject.title}}</p>
+      </li>
+    {{/each}}
   </ul>
 
 </script>
