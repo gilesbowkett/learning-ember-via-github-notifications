@@ -68,13 +68,17 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name='notification'>
+
   <p>{{content.subject.title}}</p>
   <p>{{content.subject.type}}</p>
   <p>{{content.subject.url}}</p>
+
   <p>{{content.reason}}</p>
   <p>{{content.updated_at}}</p>
   <p>{{content.unread}}</p>
-  <p>data: {{content.data}}</p>
+
+  <p>{{content.data.body}}</p> <!-- not yet bound, and async -->
+
 </script>
 
 <script>
@@ -89,7 +93,6 @@
       jQuery.get(notification.subject.url,
                  function(data) {
         notification.data = data;
-        console.log(data);
       });
     }
   });
@@ -1470,6 +1473,9 @@
   App.NotificationRoute = Ember.Route.extend({
     setupController: function(controller, notification) {
       notification.getExpandedDataFromGitHub();
+      // this is throwing 403s now, probably due to rate limiting
+      // I may also need to set up basic auth or something
+      // data needs to be bound or something because the above is async
       controller.set('content', notification);
     }
   });
