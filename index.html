@@ -1472,9 +1472,8 @@
 
   App.NotificationRoute = Ember.Route.extend({
     setupController: function(controller, notification) {
+      // may throw 403s, very probably due to rate limiting
       notification.getExpandedDataFromGitHub();
-      // this is throwing 403s now, probably due to rate limiting
-      // I may also need to set up basic auth or something
       // data needs to be bound or something because the above is async
       controller.set('content', notification);
     }
