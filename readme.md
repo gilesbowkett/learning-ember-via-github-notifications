@@ -3,12 +3,12 @@
 A simple, unfinished GitHub notifications viewer. Building this to
 explore Ember.
 
-## data
+## Data
 
 The data's hard-coded real-life JSON from the GitHub notifications API.
 No Ember Data.
 
-## tests
+## Tests
 
 The repo includes specs based on [the Ember integration testing guide by
 Jo Liss](https://github.com/emberjs/website/pull/452). Using integration
