@@ -17,3 +17,8 @@ for testing Ember apps. I'm not satisfied with that as an ultimate
 solution, but I'm looking to flesh out an implementation to be sure I
 understand.
 
+## Build
+
+There's no build process here, and in a real app you'd see a build
+process which enabled each Handlebars template to live in its own file.
+
