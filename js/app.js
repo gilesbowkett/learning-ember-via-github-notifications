@@ -1,5 +1,39 @@
 App = Ember.Application.create();
 
+App.Router.map(function() {
+  this.resource('notifications', function() {
+    this.resource('notification', { path: '/:notification_id' } );
+  });
+});
+
+App.IndexRoute = Ember.Route.extend({
+  redirect: function() {
+    this.transitionTo('notifications');
+  }
+});
+
+App.NotificationsController = Ember.ArrayController.extend();
+
+App.NotificationsRoute = Ember.Route.extend({
+  setupController: function(controller) {
+    controller.set('content', App.Notification.findAll());
+  }
+});
+
+App.NotificationsView = Ember.View.extend({
+  layoutName: 'index'
+});
+
+App.NotificationRoute = Ember.Route.extend({
+  setupController: function(controller, notification) {
+    notification.getExpandedDataFromGitHub();
+    controller.set('content', notification);
+  },
+  renderTemplate: function() {
+    this.render({ outlet: 'rightside' });
+  }
+});
+
 App.Notification = Ember.Object.extend({
   data: { user: { login: null, avatar_url: null } },
   login: function() {
@@ -1376,42 +1410,6 @@ App.Notification.reopenClass({
 
     return notifications;
 
-  }
-});
-
-App.Router.map(function() {
-  this.resource('notifications', function() {
-    this.resource('notification', { path: '/:notification_id' } );
-  });
-});
-
-App.IndexRoute = Ember.Route.extend({
-  redirect: function() {
-    this.transitionTo('notifications');
-  }
-});
-
-App.NotificationsController = Ember.ArrayController.extend();
-
-App.NotificationsRoute = Ember.Route.extend({
-  setupController: function(controller) {
-    controller.set('content', App.Notification.findAll());
-  }
-});
-
-App.NotificationsView = Ember.View.extend({
-  layoutName: 'index'
-});
-
-App.NotificationRoute = Ember.Route.extend({
-  setupController: function(controller, notification) {
-    // may throw 403s, very probably due to rate limiting
-    notification.getExpandedDataFromGitHub();
-    // data needs to be bound or something because the above is async
-    controller.set('content', notification);
-  },
-  renderTemplate: function() {
-    this.render({ outlet: 'rightside' });
   }
 });
 
