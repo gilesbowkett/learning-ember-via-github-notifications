@@ -35,6 +35,9 @@
 
   #right-side-view {
     float: right;
+    width: 500px;
+    height: 500px;
+    background-image: url('./octocat.png');
   }
 
 </style>
@@ -44,21 +47,27 @@
 <script src="ember-1.0.0-rc.2.js"></script>
 
 <script type="text/x-handlebars" data-template-name='octocat'>
-  <div id="right-side-view">
-    <img src="octocat.png">
-  </div>
+  <img src="octocat.png">
 </script>
 
 <script type="text/x-handlebars" data-template-name='index'>
 
   <h1>Notifications</h1>
 
-  {{template 'octocat'}}
+  <div id="right-side-view">
+    {{outlet 'rightside'}}
+  </div>
+
+  {{yield}}
+
+</script>
+
+<script type="text/x-handlebars" data-template-name='notifications'>
 
   <ul class="notifications">
     {{#each notification in controller}}
       <li {{bindAttr class="notification.subject.type"}}>
-        {{#linkTo 'notification' notification}}
+        {{#linkTo notification notification}}
           <p>{{notification.subject.title}}</p>
         {{/linkTo}}
       </li>
@@ -1748,15 +1757,27 @@
   });
 
   App.Router.map(function() {
-    this.route('notification', { path: '/:notification_id' } );
+    this.resource('notifications', function() {
+      this.resource('notification', { path: '/:notification_id' } );
+    });
   });
 
-  App.IndexController = Ember.ArrayController.extend();
-
   App.IndexRoute = Ember.Route.extend({
+    redirect: function() {
+      this.transitionTo('notifications');
+    }
+  });
+
+  App.NotificationsController = Ember.ArrayController.extend();
+
+  App.NotificationsRoute = Ember.Route.extend({
     setupController: function(controller) {
       controller.set('content', App.Notification.findAll());
     }
+  });
+
+  App.NotificationsView = Ember.View.extend({
+    layoutName: 'index'
   });
 
   App.NotificationRoute = Ember.Route.extend({
@@ -1765,6 +1786,9 @@
       notification.getExpandedDataFromGitHub();
       // data needs to be bound or something because the above is async
       controller.set('content', notification);
+    },
+    renderTemplate: function() {
+      this.render({ outlet: 'rightside' });
     }
   });
 
