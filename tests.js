@@ -28,6 +28,19 @@ describe("Notifications", function() {
       expect(this.notifications[4].className).to.equal("Issue");
     });
 
+    describe("viewing a specific notification", function() {
+      beforeEach(function() {
+        client.$(".notifications > li > a").first().click()
+      });
+
+      it("shows the notification's base data immediately", function() {
+        pullRequestTitle = 'Include useful exception when accessing DS without ember-data'
+        expect(client.$("#right-side-view > p:first").text()).to.equal(pullRequestTitle);
+      });
+
+      it("brings in all the other data from GitHub");
+    });
+
   });
   
 });
