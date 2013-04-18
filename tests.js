@@ -15,6 +15,10 @@ describe("Notifications", function() {
       assert.equal(client.$(".notifications > li").length, 20);
     });
 
+    it("shows a pull request first", function() {
+      assert.equal(client.$(".notifications > li:first")[0].className, "PullRequest");
+    });
+
   });
   
 });
