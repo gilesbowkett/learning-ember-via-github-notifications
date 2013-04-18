@@ -38,6 +38,8 @@ describe("Notifications", function() {
         expect(client.$("#right-side-view > p:first").text()).to.equal(pullRequestTitle);
       });
 
+      // FIXME: not only is this too tightly coupled to the fixture data, its use of
+      // `setTimeout` makes it very much not viable as a serious solution.
       it("brings in all the other data from GitHub asynchronously", function() {
         pullRequestBody = 'I\'ve stumbled upon several SO questions similar to "What does ' +
                           'DS is not defined mean?". This throws an exception explaining ' +
