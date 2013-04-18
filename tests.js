@@ -4,7 +4,8 @@ onload = function(){
   var runner = mocha.run();
 };
 
-var assert = chai.assert;
+var expect = chai.expect;
+
 describe("Notifications", function() {
   client = setupTesting();
 
@@ -16,15 +17,15 @@ describe("Notifications", function() {
     client.startAtRoute("index");
 
     it("has 20 notifications", function() {
-      assert.equal(this.notifications.length, 20);
+      expect(this.notifications.length).to.equal(20);
     });
 
     it("assigns CSS classes for pull requests", function() {
-      assert.equal(this.notifications[0].className, "PullRequest");
+      expect(this.notifications[0].className).to.equal("PullRequest");
     });
 
     it("assigns CSS classes for issues", function() {
-      assert.equal(this.notifications[4].className, "Issue");
+      expect(this.notifications[4].className).to.equal("Issue");
     });
 
   });
