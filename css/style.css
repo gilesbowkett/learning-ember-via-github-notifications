@@ -24,18 +24,18 @@ li {
 }
 
 li.Issue {
-  background-image: url('./issue.png');
+  background-image: url('../images/issue.png');
 }
 
 li.PullRequest {
-  background-image: url('./pull_request.png');
+  background-image: url('../images/pull_request.png');
 }
 
 #right-side-view {
   float: right;
   width: 800px;
   height: 800px;
-  background-image: url('./octocat.png');
+  background-image: url('../images/octocat.png');
   background-repeat: no-repeat;
 }
 
