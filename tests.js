@@ -9,16 +9,25 @@ describe("Notifications", function() {
   client = setupTesting();
 
   describe("index", function() {
+    beforeEach(function() {
+      this.notifications = client.$(".notifications > li");
+    });
+
     client.startAtRoute("index");
 
     it("has 20 notifications", function() {
-      assert.equal(client.$(".notifications > li").length, 20);
+      assert.equal(this.notifications.length, 20);
     });
 
-    it("shows a pull request first", function() {
-      assert.equal(client.$(".notifications > li:first")[0].className, "PullRequest");
+    it("assigns CSS classes for pull requests", function() {
+      assert.equal(this.notifications[0].className, "PullRequest");
+    });
+
+    it("assigns CSS classes for issues", function() {
+      assert.equal(this.notifications[4].className, "Issue");
     });
 
   });
   
 });
+
