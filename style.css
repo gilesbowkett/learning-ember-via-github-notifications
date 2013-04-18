@@ -1,0 +1,41 @@
+body {
+  font-family: 'Gill Sans';
+}
+
+h1 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 60px;
+}
+
+ul {
+  margin-left: 20px;
+}
+
+li {
+  border: 1px dashed #eee;
+  width: 500px;
+  margin-bottom: 20px;
+
+  background-repeat: no-repeat;
+  list-style-type: none;
+  min-height: 46px;
+  padding-left: 60px;
+}
+
+li.Issue {
+  background-image: url('./issue.png');
+}
+
+li.PullRequest {
+  background-image: url('./pull_request.png');
+}
+
+#right-side-view {
+  float: right;
+  width: 800px;
+  height: 800px;
+  background-image: url('./octocat.png');
+  background-repeat: no-repeat;
+}
+
