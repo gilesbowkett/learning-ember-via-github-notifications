@@ -1,0 +1,56 @@
+<meta charset="utf-8">
+
+<script src="handlebars.js"></script>
+<script src="jquery-1.9.1.min.js"></script>
+<script src="ember-1.0.0-rc.2.js"></script>
+
+<link rel="stylesheet" href="mocha.css">
+<script src="mocha.js"></script>
+<script src="chai.js"></script>
+
+<script type="text/x-handlebars" data-template-name='index'>
+
+  <h1>Notifications</h1>
+
+  <div id="right-side-view">
+    {{outlet 'rightside'}}
+  </div>
+
+  {{yield}}
+
+</script>
+
+<script type="text/x-handlebars" data-template-name='notifications'>
+
+  <ul class="notifications">
+    {{#each notification in controller}}
+      <li {{bindAttr class="notification.subject.type"}}>
+        {{#linkTo notification notification}}
+          <p>{{notification.subject.title}}</p>
+        {{/linkTo}}
+      </li>
+    {{/each}}
+  </ul>
+
+</script>
+
+<script type="text/x-handlebars" data-template-name='notification'>
+
+  <p>{{model.subject.title}}</p>
+  <p>{{model.subject.type}}</p>
+
+  <p>{{model.updated_at}}</p>
+
+  <p>{{model.login}}</p>
+  <img {{bindAttr src=model.data.user.avatar_url}}>
+  <p>{{model.data.body}}</p>
+
+</script>
+
+<script type="text/javascript" src="app.js"></script>
+
+<script src="testing_setup.js"></script>
+<script src="tests.js"></script>
+
+<div id="mocha"></div>
+
