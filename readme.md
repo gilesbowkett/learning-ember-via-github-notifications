@@ -1,4 +1,4 @@
-# learning Ember via GitHub notifications app
+# Learning Ember via GitHub notifications app
 
 A simple, unfinished GitHub notifications viewer. Building this to
 explore Ember.
