@@ -38,7 +38,16 @@ describe("Notifications", function() {
         expect(client.$("#right-side-view > p:first").text()).to.equal(pullRequestTitle);
       });
 
-      it("brings in all the other data from GitHub");
+      it("brings in all the other data from GitHub asynchronously", function() {
+        pullRequestBody = 'I\'ve stumbled upon several SO questions similar to "What does ' +
+                          'DS is not defined mean?". This throws an exception explaining ' +
+                          'to the user that they need to include Ember Data and to download ' +
+                          'it from http://s3.amazonaws.com/builds.emberjs.com/ember-data-latest.js' +
+                          ' I thought it could improve the getting started experience.'
+        setTimeout(function() {
+          expect(client.$("#right-side-view > p")[4].text()).to.equal(pullRequestBody);
+        }, 2000);
+      });
     });
 
   });
