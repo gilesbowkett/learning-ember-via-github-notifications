@@ -3,6 +3,10 @@
 A simple, unfinished GitHub notifications viewer. Building this to
 explore Ember.
 
+## Very, very unfinished
+
+Just FYI.
+
 ## Data
 
 The data's hard-coded real-life JSON from the GitHub notifications API.
