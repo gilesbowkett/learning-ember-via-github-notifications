@@ -56,7 +56,7 @@ function setupTesting() {
   });
 
 
-  // TODO: better name! and make this OO?
+  // @mharris717 testing helpers, slightly modified
   var client = {};
 
   client.transitionTo = function(a,b) {
