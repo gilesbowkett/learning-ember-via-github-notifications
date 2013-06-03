@@ -35,10 +35,7 @@ App.NotificationRoute = Ember.Route.extend({
 });
 
 App.Notification = Ember.Object.extend({
-  data: { user: { login: null, avatar_url: null } },
-  login: function() {
-    return this.data.user.login;
-  }.property('data, data.user, data.user.login')
+  data: { user: { login: null, avatar_url: null } }
 });
 
 App.Notification.reopen({
