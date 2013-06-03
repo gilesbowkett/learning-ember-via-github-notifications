@@ -28,28 +28,10 @@ describe("Notifications", function() {
       expect(this.notifications[4].className).to.equal("Issue");
     });
 
-    describe("viewing a specific notification", function() {
-      beforeEach(function() {
-        client.$(".notifications > li > a").first().click()
-      });
-
-      it("shows the notification's base data immediately", function() {
-        pullRequestTitle = 'Include useful exception when accessing DS without ember-data'
-        expect(client.$("#right-side-view > p:first").text()).to.equal(pullRequestTitle);
-      });
-
-      // FIXME: not only is this too tightly coupled to the fixture data, its use of
-      // `setTimeout` makes it very much not viable as a serious solution.
-      it("brings in all the other data from GitHub asynchronously", function() {
-        pullRequestBody = 'I\'ve stumbled upon several SO questions similar to "What does ' +
-                          'DS is not defined mean?". This throws an exception explaining ' +
-                          'to the user that they need to include Ember Data and to download ' +
-                          'it from http://s3.amazonaws.com/builds.emberjs.com/ember-data-latest.js' +
-                          ' I thought it could improve the getting started experience.'
-        setTimeout(function() {
-          expect(client.$("#right-side-view > p")[4].text()).to.equal(pullRequestBody);
-        }, 2000);
-      });
+    it("viewing a specific notification shows the notification's base data immediately", function() {
+      client.$(".notifications > li > a").first().click()
+      pullRequestTitle = 'Include useful exception when accessing DS without ember-data'
+      expect(client.$("#right-side-view > p:first").text()).to.equal(pullRequestTitle);
     });
 
   });
