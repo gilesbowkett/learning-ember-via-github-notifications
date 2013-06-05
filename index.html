@@ -32,14 +32,14 @@
 
 <script type="text/x-handlebars" data-template-name='notification'>
 
-  <p>{{model.subject.title}}</p>
-  <p>{{model.subject.type}}</p>
+  <p>{{subject.title}}</p>
+  <p>{{subject.type}}</p>
 
-  <p>{{model.updated_at}}</p>
+  <p>{{updated_at}}</p>
 
-  <p>{{model.login}}</p>
-  <img {{bindAttr src=model.data.user.avatar_url}}>
-  <p>{{model.data.body}}</p>
+  <p>{{login}}</p>
+  <img {{bindAttr src=data.user.avatar_url}}>
+  <p>{{data.body}}</p>
 
 </script>
 
