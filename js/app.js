@@ -16,7 +16,7 @@ App.NotificationsController = Ember.ArrayController.extend();
 
 App.NotificationsRoute = Ember.Route.extend({
   setupController: function(controller) {
-    controller.set('content', App.Notification.findAll());
+    controller.set('model', App.Notification.findAll());
   }
 });
 
@@ -27,7 +27,7 @@ App.NotificationsView = Ember.View.extend({
 App.NotificationRoute = Ember.Route.extend({
   setupController: function(controller, notification) {
     notification.getExpandedDataFromGitHub();
-    controller.set('content', notification);
+    controller.set('model', notification);
   },
   renderTemplate: function() {
     this.render({ outlet: 'rightside' });
