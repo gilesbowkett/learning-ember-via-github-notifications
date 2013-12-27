@@ -14,9 +14,17 @@ App.IndexRoute = Ember.Route.extend({
 
 App.NotificationsController = Ember.ArrayController.extend();
 
+App.NotificationController = Ember.ObjectController.extend({
+  actions: {
+    imageClicked: function() {
+      Ember.debug("WHOOHOO!");
+    }
+  }
+});
+
 App.NotificationsRoute = Ember.Route.extend({
-  setupController: function(controller) {
-    controller.set('model', App.Notification.findAll());
+  model: function() {
+    return App.Notification.findAll();
   }
 });
 
@@ -25,9 +33,11 @@ App.NotificationsView = Ember.View.extend({
 });
 
 App.NotificationRoute = Ember.Route.extend({
-  setupController: function(controller, notification) {
-    notification.getExpandedDataFromGitHub();
-    controller.set('model', notification);
+  model: function(params) {
+    return App.Notification.find(params.notification_id);
+  },
+  afterModel: function(model) {
+    model.getExpandedDataFromGitHub();
   },
   renderTemplate: function() {
     this.render({ outlet: 'rightside' });
@@ -40,7 +50,6 @@ App.Notification = Ember.Object.extend({
 
 App.Notification.reopen({
   getExpandedDataFromGitHub: function() {
-
     notification = this;
     jQuery.get(notification.subject.url,
                function(data) {
@@ -60,7 +69,6 @@ App.Notification.reopenClass({
   },
 
   findAll: function() {
-
     var notifications = [];
 
     enormousJSONString = "[{\"id\":\"9629013\",\"unread\":true,\"reason\":\"subscribed\"," +
