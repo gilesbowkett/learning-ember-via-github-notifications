@@ -19,6 +19,7 @@
 <script type="text/x-handlebars" data-template-name='notifications'>
 
   <ul class="notifications">
+        {{#linkTo "notification" this}}
     {{#each notification in controller}}
       <li {{bindAttr class="notification.subject.type"}}>
         {{#linkTo notification notification}}
