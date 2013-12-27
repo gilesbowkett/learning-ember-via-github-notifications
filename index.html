@@ -2,7 +2,7 @@
 
 <script src="js/handlebars.js"></script>
 <script src="js/jquery-1.9.1.min.js"></script>
-<script src="js/ember-1.0.0-rc.2.js"></script>
+<script src="js/ember.js"></script>
 
 <script type="text/x-handlebars" data-template-name='index'>
 
@@ -19,11 +19,10 @@
 <script type="text/x-handlebars" data-template-name='notifications'>
 
   <ul class="notifications">
+    {{#each}}
+      <li {{bindAttr class="subject.type"}}>
         {{#linkTo "notification" this}}
-    {{#each notification in controller}}
-      <li {{bindAttr class="notification.subject.type"}}>
-        {{#linkTo notification notification}}
-          <p>{{notification.subject.title}}</p>
+          <p>{{subject.title}}</p>
         {{/linkTo}}
       </li>
     {{/each}}
@@ -39,7 +38,7 @@
   <p>{{updated_at}}</p>
 
   <p>{{login}}</p>
-  <img {{bindAttr src=data.user.avatar_url}}>
+  <img {{bindAttr src=data.user.avatar_url}} {{action imageClicked}}>
   <p>{{data.body}}</p>
 
 </script>
